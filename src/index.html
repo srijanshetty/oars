@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html ng-app="root">
+    <head>
+        <title>Angular App</title>
+        <script type="text/javascript" src="app/bower_components/angular/angular.js"></script>
+        <script src="scripts/main.min.js"></script>
+    </head>
+
+    <body ng-app="root">
+        <section ng-controller="index">
+        <input type="text" ng-model="search.$">
+        <table>
+            <tr ng-repeat="course in courseData | orderBy:'-Department' | limitTo:5">
+                <td>{{course["Course No"]}}</td>
+                <td>{{course["Department"]}}</td>
+            </tr>
+        </table>
+        </section>
+    </body>
+</html>
+
