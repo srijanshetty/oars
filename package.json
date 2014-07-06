@@ -1,0 +1,33 @@
+{
+  "name": "oars",
+  "version": "0.0.0",
+  "authors": [
+    "Srijan R Shetty <srijan.shetty@gmail.com>"
+  ],
+  "description": "OARS course listing",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/srijanshetty/oars.git"
+  },
+  "devDependencies": {
+    "gulp": "~3.8.5",
+    "gulp-autoprefixer": "0.0.8",
+    "gulp-rename": "~1.2.0",
+    "gulp-concat": "~2.2.0",
+    "gulp-clean": "~0.3.1",
+    "gulp-cache": "~0.2.0",
+    "gulp-uglify": "~0.3.1",
+    "gulp-open": "~0.2.8",
+    "gulp-minify-css": "~0.3.6",
+    "gulp-notify": "~1.4.0",
+    "gulp-livereload": "~2.1.0",
+    "gulp-jshint": "~1.6.4",
+    "gulp-imagemin": "~0.6.1",
+    "imagemin-gifsicle": "~0.1.1",
+    "imagemin-jpegtran": "~0.1.0",
+    "imagemin-optipng": "~0.1.0",
+    "imagemin-pngquant": "~0.1.2",
+    "connect": "~3.0.1",
+    "tiny-lr": "0.0.9"
+  }
+}
