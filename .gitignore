@@ -1,4 +1,3 @@
 node_modules/
-app/
 dist/
-.jshintrc
+bower_components/
