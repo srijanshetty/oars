@@ -28,6 +28,10 @@
     "imagemin-optipng": "~0.1.0",
     "imagemin-pngquant": "~0.1.2",
     "connect": "~3.0.1",
-    "tiny-lr": "0.0.9"
+    "tiny-lr": "0.0.9",
+    "morgan": "~1.1.1",
+    "serve-static": "~1.3.0",
+    "gulp-html-replace": "~1.1.0",
+    "gulp-usemin": "~0.3.5"
   }
 }
