@@ -12,8 +12,8 @@
 
     <body ng-app="root">
         <section ng-controller="index">
-        <input type="text" ng-model="search.$">
 
+        <input type="text" ng-model="search" ng-enter="startSearch()"/>
         <table class="listing">
             <thead>
                 <tr>
@@ -27,7 +27,7 @@
                     <td>Units</td>
                 </tr>
             </thead>
-            <tr ng-repeat="course in courseData | filter:search">
+            <tr bindonce ng-repeat="course in courseData | filter:searchQuery">
                 <td>{{course["Course No"]}}</td>
                 <td>{{course["Department"]}}</td>
                 <td>{{course["Instructor(s)"]}}</td>
@@ -42,6 +42,7 @@
 
         <!-- Angular  -->
         <script type="text/javascript" src="app/bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="app/bower_components/angular-bindonce/bindonce.min.js"></script>
         <script src="scripts/main.min.js"></script>
     </body>
 </html>
