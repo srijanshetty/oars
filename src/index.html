@@ -2,21 +2,47 @@
 
 <html ng-app="root">
     <head>
-        <title>Angular App</title>
-        <script type="text/javascript" src="app/bower_components/angular/angular.js"></script>
-        <script src="scripts/main.min.js"></script>
+        <title>OARS Course Listing</title>
+
+        <!-- CSS files from foundation -->
+        <link rel="stylesheet" type="text/css" href="app/bower_components/foundation/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="app/bower_components/foundation/css/foundation.css">
+        <link rel="stylesheet" type="text/css" href="styles/main.min.css">
     </head>
 
     <body ng-app="root">
         <section ng-controller="index">
         <input type="text" ng-model="search.$">
-        <table>
-            <tr ng-repeat="course in courseData | orderBy:'-Department' | limitTo:5">
+
+        <table class="listing">
+            <thead>
+                <tr>
+                    <td>Course No</td>
+                    <td>Department</td>
+                    <td>Instructor</td>
+                    <td>Email</td>
+                    <td>Pre req</td>
+                    <td>Schedule</td>
+                    <td>Title</td>
+                    <td>Units</td>
+                </tr>
+            </thead>
+            <tr ng-repeat="course in courseData | filter:search">
                 <td>{{course["Course No"]}}</td>
                 <td>{{course["Department"]}}</td>
+                <td>{{course["Instructor(s)"]}}</td>
+                <td>{{course["Inst. email"]}}</td>
+                <td>{{course["Pre-requisites"]}}</td>
+                <td>{{course["Schedule"]}}</td>
+                <td>{{course["Title"]}}</td>
+                <td>{{course["Units"]}}</td>
             </tr>
         </table>
         </section>
+
+        <!-- Angular  -->
+        <script type="text/javascript" src="app/bower_components/angular/angular.js"></script>
+        <script src="scripts/main.min.js"></script>
     </body>
 </html>
 

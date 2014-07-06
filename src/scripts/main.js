@@ -3,3 +3,4 @@ angular.module('root', ['data'])
         $scope.value = "soume";
         $scope.courseData = courseData;
     }]);
+
