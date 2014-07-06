@@ -1,7 +1,9 @@
+'use strict';
+
 angular.module('root', ['data', 'pasvaz.bindonce'])
     .directive('ngEnter', function () {
         return function (scope, element, attrs) {
-            element.bind("keydown keypress", function (event) {
+            element.bind('keydown keypress', function (event) {
                 if(event.which === 13) {
                     scope.$apply(function (){
                         scope.$eval(attrs.ngEnter);
@@ -16,5 +18,5 @@ angular.module('root', ['data', 'pasvaz.bindonce'])
         $scope.courseData = courseData;
         $scope.startSearch = function() {
             $scope.searchQuery = $scope.search;
-        }
+        };
     }]);
