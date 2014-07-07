@@ -5,15 +5,18 @@
         <title>OARS Course Listing</title>
 
         <!-- CSS files from foundation -->
-        <link rel="stylesheet" type="text/css" href="app/bower_components/foundation/css/normalize.css">
-        <link rel="stylesheet" type="text/css" href="app/bower_components/foundation/css/foundation.css">
-        <link rel="stylesheet" type="text/css" href="styles/main.min.css">
+        <!-- build:css styles/main.min.css -->
+        <link rel="stylesheet" type="text/css" href="../bower_components/foundation/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="../bower_components/foundation/css/foundation.css">
+        <link rel="stylesheet" type="text/css" href="styles/main.css">
+        <!-- endbuild -->
     </head>
 
-    <body ng-app="root">
+    <body>
         <section ng-controller="index">
-
-        <input type="text" ng-model="search" ng-enter="startSearch()"/>
+        <form ng-submit="searchQuery=search">
+            <input type="text" ng-model="search"/>
+        </form>
         <table class="listing">
             <thead>
                 <tr>
@@ -41,9 +44,12 @@
         </section>
 
         <!-- Angular  -->
-        <script type="text/javascript" src="app/bower_components/angular/angular.js"></script>
-        <script type="text/javascript" src="app/bower_components/angular-bindonce/bindonce.min.js"></script>
-        <script src="scripts/main.min.js"></script>
+        <!-- build:js scripts/main.min.js -->
+        <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="../bower_components/angular-bindonce/bindonce.min.js"></script>
+        <script src="scripts/data.js"></script>
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
     </body>
 </html>
 
