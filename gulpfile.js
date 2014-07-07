@@ -11,8 +11,7 @@ var gulp = require('gulp'),
     connect = require('connect'),
     morgan = require('morgan'),
     serveStatic = require('serve-static'),
-    http = require('http'),
-    server = (require('tiny-lr'))();
+    http = require('http');
 
 var config = {
     port: 8082,
