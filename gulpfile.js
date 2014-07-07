@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     connect = require('connect'),
     morgan = require('morgan'),
     serveStatic = require('serve-static'),
+    deploy = require('gulp-gh-pages'),
     http = require('http');
 
 var config = {
@@ -18,7 +19,7 @@ var config = {
     root: 'dist/'
 };
 
-gulp.task('build', ['jshint'], function() {
+gulp.task('build', ['images', 'jshint'], function() {
   return gulp.src('src/*.html')
     .pipe(usemin({
         css: [autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'), minifycss(), 'concat'],
@@ -53,4 +54,9 @@ gulp.task('clean', function() {
 
 gulp.task('default', ['clean'], function () {
     gulp.start('images', 'build', 'serve');
+});
+
+gulp.task('deploy', ['build'], function() {
+    gulp.src("./dist/**/*")
+        .pipe(deploy());
 });
