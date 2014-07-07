@@ -5,15 +5,9 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
     usemin = require('gulp-usemin'),
-    rename = require('gulp-rename'),
     concat = require('gulp-concat'),
-    notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     clean = require('gulp-clean'),
-    open = require('gulp-open'),
-    clean = require('gulp-clean'),
-    open = require('gulp-open'),
-    livereload = require('gulp-livereload'),
     connect = require('connect'),
     morgan = require('morgan'),
     serveStatic = require('serve-static'),
@@ -25,46 +19,31 @@ var config = {
     root: 'dist/'
 };
 
-gulp.task('styles', function() {
+gulp.task('build', ['jshint'], function() {
   return gulp.src('src/*.html')
     .pipe(usemin({
-        css: [autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'), rename({ suffix: '.min' }), minifycss(), 'concat']
+        css: [autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'), minifycss(), 'concat'],
+        js: [uglify(), 'concat']
     }))
-    .pipe(gulp.dest('dist/'))
-    .pipe(livereload(server));
-    // .pipe(notify({ message: 'Styles task complete' }));
+    .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('html', function() {
-    return gulp.src('src/*.html')
-    .pipe(gulp.dest('dist/'))
-    .pipe(livereload(server));
-    // .pipe(notify({message: 'Copy Task complete' }));
-});
-
-gulp.task('scripts', function() {
-  return gulp.src('src/*.html')
-    .pipe(usemin({
-        js: [jshint('.jshintrc'), jshint.reporter('default'), 'concat', uglify()]
-    }))
-    .pipe(gulp.dest('dist/'))
-    .pipe(livereload(server));
-    // .pipe(notify({ message: 'Scripts task complete' }));
+gulp.task('jshint', function() {
+  return gulp.src('src/scripts/**/*.js')
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('default'));
 });
 
 gulp.task('images', function() {
   return gulp.src('src/images/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-    .pipe(livereload(server))
     .pipe(gulp.dest('dist/images'));
-    // .pipe(notify({ message: 'Images task complete' }));
 });
 
 gulp.task('serve', function(){
 	var app = connect();
 	app.use(morgan('dev'));
 	app.use(serveStatic(config.root));
-
 	http.createServer(app).listen(config.port);
 });
 
@@ -73,18 +52,6 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task('watch', function() {
-  // Listen on port 35729
-  server.listen(35729, function (err) {
-    if (err) {
-      return console.log(err)
-    };
-
-    gulp.watch('src/styles/**/*.css', ['styles']);
-    gulp.watch('src/scripts/**/*.js', ['scripts']);
-    gulp.watch('src/images/**/*', ['images']);
-    gulp.watch('src/*.html', ['html']);
-  });
+gulp.task('default', ['clean'], function () {
+    gulp.start('images', 'build', 'serve');
 });
-
-gulp.task('default', ['clean', 'styles', 'scripts', 'images', 'html', 'serve', 'watch']);
